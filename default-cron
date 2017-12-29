@@ -1,0 +1,11 @@
+# start 0:00 everyday
+0 0 * * * root torrentcontrol start
+
+# stop 6:00 everday
+0 6 * * * root torrentcontrol stop
+
+# start 10:30 weekdays
+30 10 * * 1-5 root torrentcontrol start
+
+# stop 15:30 weekdays
+30 15 * * 1-5 root torrentcontrol stop
