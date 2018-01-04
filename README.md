@@ -1,12 +1,12 @@
 # transmission-openvpn-cron
 
-Adds a cron schedule to [docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn/) using 
+Adds a cron schedule to [docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn) using 
 [torrentcontrol](https://gist.github.com/greenarrow/642874), to provide greater control over scheduled downloads,
  than what transmission provides out of the box.
 
 ## Docker Repository
 
-[https://hub.docker.com/r/jwigley/transmission-openvpn-cron/](jwigley/transmission-openvpn-cron)
+[jwigley/transmission-openvpn-cron](https://hub.docker.com/r/jwigley/transmission-openvpn-cron)
 
 ## Run
 
@@ -47,3 +47,9 @@ The default cronkob can be overidden by mounting your cron job to `/etc/cron.d/t
 ```bash
 -v $PWD/override-cron:/etc/cron.d/torrent-sched-cron
 ```
+
+## Credits
+
+This docker image just pieces the bits together. The real work is all done by:
+  - [haugene](https://github.com/haugene)'s [docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn)
+  - [greenarrow](https://github.com/greenarrow)'s [torrentcontrol](https://gist.github.com/greenarrow/642874).
