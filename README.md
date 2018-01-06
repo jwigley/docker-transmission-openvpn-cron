@@ -1,5 +1,9 @@
 # transmission-openvpn-cron
 
+[![Docker Build Status](https://img.shields.io/docker/build/jwigley/transmission-openvpn-cron.svg)](https://hub.docker.com/r/jwigley/transmission-openvpn-cron/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jwigley/transmission-openvpn-cron.svg)](https://hub.docker.com/r/jwigley/transmission-openvpn-cron/)
+[![Docker Automated build](https://img.shields.io/docker/automated/jwigley/transmission-openvpn-cron.svg)](https://hub.docker.com/r/jwigley/transmission-openvpn-cron/)
+
 Adds a cron schedule to [docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn) using 
 [torrentcontrol](https://gist.github.com/greenarrow/642874), to provide greater control over scheduled downloads,
  than what transmission provides out of the box.
