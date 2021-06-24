@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+# from https://gist.github.com/greenarrow/642874
+
+__doc__ = """Simple script to start and stop all torrents in Transmission
+1. Make sure you have installed transmission-remote
+2. Enable web client in Transmission (allow only for 127.0.0.1, do not use authentication)
+3. Set up cron to start and stop the torrents (optional). e.g.
+
+30 2 * * *	path_to_script/torrentcontrol start
+0  8 * * *	path_to_script/torrentcontrol stop
+
+This example will start all torrents at 2:30am every night and stop them at 8am.
+"""
+
+import subprocess, re, optparse
+
+def get_ids():
+	p = subprocess.Popen( ["/usr/bin/transmission-remote", "--list"], stdout=subprocess.PIPE )
+	p.wait()
+	out, err = p.communicate()
+
+	return re.findall(r'\s(\d+)\s', out)
+
+def start_torrent(pk):
+	p = subprocess.Popen( ["/usr/bin/transmission-remote", "--torrent", pk, "--start"] )
+	p.wait()
+
+def stop_torrent(pk):
+	p = subprocess.Popen( ["/usr/bin/transmission-remote", "--torrent", pk, "--stop"] )
+	p.wait()
+
+
+if __name__ == "__main__":
+	parser = optparse.OptionParser(usage="Usage: %prog [command]\n\nCommands:\n  stop    stop all torrents\n  start   start all torrents")
+	options, args = parser.parse_args()
+
+	if len(args) == 0:
+		parser.error("must specify a command")
+
+	if args[0] == "start":
+		map( start_torrent, get_ids() )
+	elif args[0] == "stop":
+		map( stop_torrent, get_ids() )
+	else:
+		parser.error("invalid command")
